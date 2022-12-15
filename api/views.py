@@ -10,7 +10,8 @@ from imagekitio import ImageKit
 import requests
 import os
 
-
+def home(request):
+  return render(request, 'home.html')
 
 
 @api_view(['GET', 'POST', 'DELETE'])
