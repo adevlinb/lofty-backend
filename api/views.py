@@ -32,7 +32,8 @@ def keys_list(request):
 
     elif request.method == 'DELETE':
         count = Key.objects.all().delete()
-        delete_message = json.dumps({'message': 'All keys were deleted successfully!'})
+        msg_dict = {'message': 'All keys were deleted successfully!'}
+        delete_message = json.dumps(msg_dict)
         return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -43,7 +44,8 @@ def key_detail(request, pk):
     try:
         key = Key.objects.get(pk=pk)
     except Key.DoesNotExist:
-        message = json.dumps({'message': 'The key does not exist'})
+        msg_dict= {'message': 'The key does not exist'}
+        message = json.dumps(msg_dict)
         return JsonResponse(message, safe=False, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -60,7 +62,8 @@ def key_detail(request, pk):
 
     elif request.method == 'DELETE':
         key.delete()
-        delete_message = json.dumps({'message': 'The key was deleted successfully!'})
+        msg_dict = {'message': 'The key was deleted successfully!'}
+        delete_message = json.dumps(msg_dict)
         return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -71,7 +74,8 @@ def key_slug_detail(request, slug):
     try:
         key = Key.objects.get(slug=slug)
     except Key.DoesNotExist:
-        message = json.dumps({'message': 'The key does not exist'})
+        msg_dict = {'message': 'The key does not exist'}
+        message = json.dumps(msg_dict)
         return JsonResponse(message, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -88,7 +92,8 @@ def key_slug_detail(request, slug):
 
     elif request.method == 'DELETE':
         key.delete()
-        delete_message = json.dumps({'message': 'The key was deleted successfully!'})
+        msg_dict = {'message': 'The key was deleted successfully!'}
+        delete_message = json.dumps(msg_dict)
         return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -103,7 +108,8 @@ def dogs_list(request):
 
     elif request.method == 'DELETE':
         count = DogPhoto.objects.all().delete()
-        delete_message = json.dumps({'message': 'All Dog Photos were deleted successfully!'})
+        msg_dict = {'message': 'All Dog Photos were deleted successfully!'}
+        delete_message = json.dumps(msg_dict)
         return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
@@ -164,7 +170,8 @@ def dog_photo_detail_with_transformed_photo(request, pk):
     try:
         dog_photo = DogPhoto.objects.get(pk=pk)
     except DogPhoto.DoesNotExist:
-        message = json.dumps({'message': 'The dog photo does not exist'})
+        msg_dict = {'message': 'The dog photo does not exist'}
+        message = json.dumps(msg_dict)
         return JsonResponse(message, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -173,5 +180,6 @@ def dog_photo_detail_with_transformed_photo(request, pk):
 
     elif request.method == 'DELETE':
         dog_photo.delete()
-        delete_message = json.dumps({'message': 'Doggie Photo was deleted successfully!'})
+        msg_dict = {'message': 'Doggie Photo was deleted successfully!'}
+        delete_message = json.dumps(msg_dict)
         return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
