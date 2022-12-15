@@ -9,7 +9,6 @@ from rest_framework.decorators import api_view
 from imagekitio import ImageKit
 import requests
 import os
-import json
 
 def home(request):
   return render(request, 'home.html')
@@ -32,9 +31,7 @@ def keys_list(request):
 
     elif request.method == 'DELETE':
         count = Key.objects.all().delete()
-        msg_dict = {'message': 'All keys were deleted successfully!'}
-        delete_message = json.dumps(msg_dict)
-        return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse({'message': 'All keys were deleted successfully!'}, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -44,9 +41,7 @@ def key_detail(request, pk):
     try:
         key = Key.objects.get(pk=pk)
     except Key.DoesNotExist:
-        msg_dict= {'message': 'The key does not exist'}
-        message = json.dumps(msg_dict)
-        return JsonResponse(message, safe=False, status=status.HTTP_404_NOT_FOUND)
+        return JsonResponse({'message': 'The key does not exist'}, safe=False, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         key_serializer = KeySerializer(key)
@@ -62,9 +57,7 @@ def key_detail(request, pk):
 
     elif request.method == 'DELETE':
         key.delete()
-        msg_dict = {'message': 'The key was deleted successfully!'}
-        delete_message = json.dumps(msg_dict)
-        return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse({'message': 'The key was deleted successfully!'}, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -74,9 +67,7 @@ def key_slug_detail(request, slug):
     try:
         key = Key.objects.get(slug=slug)
     except Key.DoesNotExist:
-        msg_dict = {'message': 'The key does not exist'}
-        message = json.dumps(msg_dict)
-        return JsonResponse(message, status=status.HTTP_404_NOT_FOUND)
+        return JsonResponse({'message': 'The key does not exist'}, safe=False, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         key_serializer = KeySerializer(key)
@@ -108,9 +99,7 @@ def dogs_list(request):
 
     elif request.method == 'DELETE':
         count = DogPhoto.objects.all().delete()
-        msg_dict = {'message': 'All Dog Photos were deleted successfully!'}
-        delete_message = json.dumps(msg_dict)
-        return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse({'message': 'All Dog Photos were deleted successfully!'}, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -170,9 +159,7 @@ def dog_photo_detail_with_transformed_photo(request, pk):
     try:
         dog_photo = DogPhoto.objects.get(pk=pk)
     except DogPhoto.DoesNotExist:
-        msg_dict = {'message': 'The dog photo does not exist'}
-        message = json.dumps(msg_dict)
-        return JsonResponse(message, status=status.HTTP_404_NOT_FOUND)
+        return JsonResponse({'message': 'The dog photo does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         dog_photo_serializer = DogPhotoSerializer(dog_photo)
@@ -180,6 +167,4 @@ def dog_photo_detail_with_transformed_photo(request, pk):
 
     elif request.method == 'DELETE':
         dog_photo.delete()
-        msg_dict = {'message': 'Doggie Photo was deleted successfully!'}
-        delete_message = json.dumps(msg_dict)
-        return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse({'message': 'Doggie Photo was deleted successfully!'}, safe=False, status=status.HTTP_204_NO_CONTENT)
