@@ -83,9 +83,7 @@ def key_slug_detail(request, slug):
 
     elif request.method == 'DELETE':
         key.delete()
-        msg_dict = {'message': 'The key was deleted successfully!'}
-        delete_message = json.dumps(msg_dict)
-        return JsonResponse(delete_message, safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse({'message': 'The key was deleted successfully!'}, safe=False, status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -167,4 +165,4 @@ def dog_photo_detail_with_transformed_photo(request, pk):
 
     elif request.method == 'DELETE':
         dog_photo.delete()
-        return JsonResponse({'message': 'Doggie Photo was deleted successfully!'}, safe=False, status=status.HTTP_204_NO_CONTENT)
+        return JsonResponse({'message': 'Doggie Photo was deleted successfully!'}, safe=False, status=status.HTTP_200_OK)
