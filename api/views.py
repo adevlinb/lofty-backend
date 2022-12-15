@@ -9,6 +9,7 @@ from rest_framework.decorators import api_view
 from imagekitio import ImageKit
 import requests
 import os
+import json
 
 def home(request):
   return render(request, 'home.html')
@@ -31,7 +32,8 @@ def keys_list(request):
 
     elif request.method == 'DELETE':
         count = Key.objects.all().delete()
-        return JsonResponse({'message': '{} All keys were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+        delete_message = json.dumps({'message': 'All keys were deleted successfully!'})
+        return JsonResponse(delete_message, status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -57,7 +59,8 @@ def key_detail(request, pk):
 
     elif request.method == 'DELETE':
         key.delete()
-        return JsonResponse({'message': 'The key was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+        delete_message = json.dumps({'message': 'The key was deleted successfully!'})
+        return JsonResponse(delete_message, status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -83,7 +86,8 @@ def key_slug_detail(request, slug):
 
     elif request.method == 'DELETE':
         key.delete()
-        return JsonResponse({'message': 'The key was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+        delete_message = json.dumps({'message': 'The key was deleted successfully!'})
+        return JsonResponse(delete_message, status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -97,7 +101,8 @@ def dogs_list(request):
 
     elif request.method == 'DELETE':
         count = DogPhoto.objects.all().delete()
-        return JsonResponse({'message': '{} All Dog Photos were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+        delete_message = json.dumps({'message': 'All Dog Photos were deleted successfully!'})
+        return JsonResponse(delete_message, status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -165,4 +170,5 @@ def dog_photo_detail_with_transformed_photo(request, pk):
 
     elif request.method == 'DELETE':
         dog_photo.delete()
-        return JsonResponse({'message': 'Doggie Photo was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+        delete_message = json.dumps({'message': 'Doggie Photo was deleted successfully!'})
+        return JsonResponse(delete_message, status=status.HTTP_204_NO_CONTENT)
