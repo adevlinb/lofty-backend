@@ -3,7 +3,7 @@
 import os
 import sys
 
-
+print("hello user")
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lofty_backend.settings')

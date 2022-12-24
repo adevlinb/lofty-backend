@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-d!h=u%!)y=--h7)dd%r=y+4ihea57lrno*u*(%(wqe3p8ki25o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,11 +88,10 @@ WSGI_APPLICATION = 'lofty_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'HOST': 'host.docker.internal',
+        'PORT': 5432,
     }
 }
 
